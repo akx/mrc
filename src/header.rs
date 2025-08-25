@@ -98,14 +98,14 @@ impl Header {
     pub fn data_size(&self) -> usize {
         let n = (self.nx as usize) * (self.ny as usize) * (self.nz as usize);
         let bytes_per_pixel = match self.mode {
-            0 => 1,     // 8-bit signed integer
-            1 => 2,     // 16-bit signed integer
-            2 => 4,     // 32-bit float
-            3 => 4,     // Complex 16-bit (2 bytes real + 2 bytes imaginary)
-            4 => 8,     // Complex 32-bit (4 bytes real + 4 bytes imaginary)
-            6 => 2,     // 16-bit unsigned integer
-            12 => 2,    // 16-bit float (IEEE-754 half)
-            _ => 0,     // unknown/unsupported
+            0 => 1,  // 8-bit signed integer
+            1 => 2,  // 16-bit signed integer
+            2 => 4,  // 32-bit float
+            3 => 4,  // Complex 16-bit (2 bytes real + 2 bytes imaginary)
+            4 => 8,  // Complex 32-bit (4 bytes real + 4 bytes imaginary)
+            6 => 2,  // 16-bit unsigned integer
+            12 => 2, // 16-bit float (IEEE-754 half)
+            _ => 0,  // unknown/unsupported
         };
         n * bytes_per_pixel
     }

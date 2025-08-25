@@ -43,7 +43,7 @@ fn main() {
     let total: usize = fields.iter().map(|(_, size)| size).sum();
     println!("\nField breakdown:");
     for (name, size) in fields {
-        println!("{:12}: {} bytes", name, size);
+        println!("{name:12}: {size} bytes");
     }
-    println!("Total: {} bytes", total);
+    println!("Total: {total} bytes");
 }

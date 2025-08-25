@@ -7,7 +7,7 @@ use mrc::MrcMmap;
 use tempfile::NamedTempFile;
 
 fn bench_header_creation(c: &mut Criterion) {
-    c.bench_function("header_creation", |b| b.iter(|| Header::new()));
+    c.bench_function("header_creation", |b| b.iter(Header::new));
 }
 
 fn bench_header_validation(c: &mut Criterion) {
