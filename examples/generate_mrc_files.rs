@@ -348,7 +348,7 @@ fn main() -> std::io::Result<()> {
     let modes = [0, 1, 2, 3, 4, 6, 12];
 
     for &mode in &modes {
-        let filename = format!("mrcs/ball_mode_{}.mrc", mode);
+        let filename = format!("mrcs/ball_mode_{mode}.mrc");
         create_mrc_file(mode, &filename)?;
     }
 

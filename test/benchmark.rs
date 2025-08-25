@@ -2,7 +2,7 @@ use criterion::{Criterion, black_box, criterion_group, criterion_main};
 use mrc::{Header, MrcView};
 
 fn bench_header_creation(c: &mut Criterion) {
-    c.bench_function("header_creation", |b| b.iter(|| Header::new()));
+    c.bench_function("header_creation", |b| b.iter(Header::new));
 }
 
 fn bench_header_validation(c: &mut Criterion) {

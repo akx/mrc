@@ -26,17 +26,14 @@ fn run_test() -> Result<(), mrc::Error> {
     // 2. Test Mode enum and conversions
     println!("\n2. Mode enum testing:");
     let mode = Mode::from_i32(2).unwrap();
-    println!("   ✅ Mode::from_i32(2) = {:?}", mode);
+    println!("   ✅ Mode::from_i32(2) = {mode:?}");
     println!("   ✅ Byte size: {} bytes", mode.byte_size());
 
     // 3. Test endian swapping
     println!("\n3. Endian swapping:");
     let original = 0x12345678u32;
     let swapped = original.swap_bytes();
-    println!(
-        "   ✅ Original: 0x{:08x}, Swapped: 0x{:08x}",
-        original, swapped
-    );
+    println!("   ✅ Original: 0x{original:08x}, Swapped: 0x{swapped:08x}");
 
     // 4. Create test file with all features
     println!("\n4. Creating test file with extended header:");
@@ -78,7 +75,7 @@ fn run_test() -> Result<(), mrc::Error> {
         println!("   ✅ read_data(): {} bytes", data.len());
 
         let dims = view.dimensions();
-        println!("   ✅ Dimensions tuple: {:?}", dims);
+        println!("   ✅ Dimensions tuple: {dims:?}");
 
         // Test typed access
         let typed_data: &[f32] = view.view().unwrap();
@@ -111,7 +108,7 @@ fn run_test() -> Result<(), mrc::Error> {
         println!("   ✅ MrcView creation");
 
         let dims = view.dimensions();
-        println!("   ✅ Dimensions tuple: {:?}", dims);
+        println!("   ✅ Dimensions tuple: {dims:?}");
 
         // Test MrcViewMut
         let mut mut_buffer = vec![0u8; header.data_size() + 128];
@@ -152,11 +149,11 @@ fn run_test() -> Result<(), mrc::Error> {
 
         // Test data offset calculation
         let offset = header.data_offset();
-        println!("   ✅ Data offset: {} bytes", offset);
+        println!("   ✅ Data offset: {offset} bytes");
 
         // Test data size calculation
         let size = header.data_size();
-        println!("   ✅ Data size: {} bytes", size);
+        println!("   ✅ Data size: {size} bytes");
     }
 
     // 10. Test error handling
@@ -181,7 +178,7 @@ fn run_test() -> Result<(), mrc::Error> {
         if let Some(m) = Mode::from_i32(mode) {
             println!("   ✅ Mode {}: {:?} ({} bytes)", mode, m, m.byte_size());
         } else {
-            println!("   ✅ Mode {}: Invalid", mode);
+            println!("   ✅ Mode {mode}: Invalid");
         }
     }
 
@@ -212,7 +209,7 @@ fn run_test() -> Result<(), mrc::Error> {
 
 fn main() {
     if let Err(e) = run_test() {
-        eprintln!("Error: {:?}", e);
+        eprintln!("Error: {e:?}");
         std::process::exit(1);
     }
 }
