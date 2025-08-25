@@ -1,39 +1,70 @@
-use core::f32;
-
 #[repr(C, align(4))]
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[non_exhaustive]
 pub struct Header {
+    /// number of columns in 3D data array (fast axis)
     pub nx: i32,
+    /// Number of rows in 3D data array (medium axis)
     pub ny: i32,
+    /// number of sections in 3D data array (slow axis)
     pub nz: i32,
+    /// mode value (see `Mode` enum)
     pub mode: i32,
+    /// location of first column in unit cell
     pub nxstart: i32,
+    /// location of first row in unit cell
     pub nystart: i32,
+    /// location of first section in unit cell
     pub nzstart: i32,
+    /// sampling along X axis of unit cell
     pub mx: i32,
+    /// sampling along Y axis of unit cell
     pub my: i32,
+    /// sampling along Z axis of unit cell
     pub mz: i32,
-    pub xlen: f32,  //CEELA: Cell dimensions in Angstroms (Å) along X axes
-    pub ylen: f32,  //CEELA: Cell dimensions in Angstroms (Å) along Y axes
-    pub zlen: f32,  //CEELA: Cell dimensions in Angstroms (Å) along Z axes
-    pub alpha: f32, //CELLB: Cell angles in degrees between the crystallographic axes Y and Z axes
-    pub beta: f32,  //CELLB: Cell angles in degrees between the crystallographic axes X and Z axes
-    pub gamma: f32, //CELLB: Cell angles in degrees between the crystallographic axes X and Y axes
+    /// CELLA: Cell dimensions in Angstroms (Å) along X axis
+    pub xlen: f32,
+    /// CELLA: Cell dimensions in Angstroms (Å) along Y axis
+    pub ylen: f32,
+    /// CELLA: Cell dimensions in Angstroms (Å) along Z axis
+    pub zlen: f32,
+    /// CELLB: Cell angles in degrees between the crystallographic axes Y and Z axes
+    pub alpha: f32,
+    /// CELLB: Cell angles in degrees between the crystallographic axes X and Z axes
+    pub beta: f32,
+    /// CELLB: Cell angles in degrees between the crystallographic axes X and Y axes
+    pub gamma: f32,
+    /// axis corresponding to columns (1,2,3 for X,Y,Z)
     pub mapc: i32,
+    /// axis corresponding to rows (1,2,3 for X,Y,Z)
     pub mapr: i32,
+    /// axis corresponding to sections (1,2,3 for X,Y,Z)
     pub maps: i32,
+    /// minimum density value
     pub dmin: f32,
+    /// maximum density value
     pub dmax: f32,
+    /// mean density value
     pub dmean: f32,
+    /// Space group number; 0 implies 2D image or image stack.
+    /// For crystallography, represents the actual spacegroup.
+    /// For volume stacks, conventionally ISPG = spacegroup number + 400.
     pub ispg: i32,
+    /// Size of extended header record in bytes.
     pub nsymbt: i32,
+    /// Extra space used for anything.
     pub extra: [u8; 100],
+    /// Phase origin (pixels) or origin of subvolume
     pub origin: [f32; 3],
+    /// Must contain "MAP " to identify file type
     pub map: [u8; 4],
+    /// Machine stamp that encodes byte order of data
     pub machst: [u8; 4],
+    /// RMS deviation of map from mean density
     pub rms: f32,
+    /// Number of labels being used
     pub nlabl: i32,
+    /// 10 text labels of 80 characters each
     pub label: [u8; 800],
 }
 
