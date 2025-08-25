@@ -1,6 +1,5 @@
 #[repr(C, align(4))]
 #[derive(Debug, Clone, Copy, PartialEq)]
-#[non_exhaustive]
 pub struct Header {
     /// number of columns in 3D data array (fast axis)
     pub nx: i32,
